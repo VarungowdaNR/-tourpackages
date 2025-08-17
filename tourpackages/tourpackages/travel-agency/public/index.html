@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tour Packages Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+ 
+  <!-- Homepage Overlay -->
+  <div id="homepage">
+   
+
+    <div class="home-card">
+      <h1>Welcome to Royal Tours</h1>
+      <p>
+        Discover and book the most exquisite tour packages across India.<br>
+        From royal palaces to serene hills, we curate journeys that create memories for a lifetime.
+      </p>
+      <div class="about">
+        <strong>About Us:</strong>
+        <p>
+          Royal Tours is a passionate team of travel experts dedicated to bringing you the best experiences. Our packages are handpicked for comfort, adventure, and cultural richness.
+        </p>
+      </div>
+      <div class="contact">
+        <strong>Contact Us:</strong>
+        <p>
+          Email: <a href="mailto:info@royaltours.com">info@royaltours.com</a><br>
+          Phone: +91-9876543210<br>
+          Address: 123, Palace Road, Bengaluru, India
+        </p>
+      </div>
+      <button id="getStartedBtn">Get Started</button>
+    </div>
+    
+  </div>
+ 
+
+  <script>
+  var isAdmin = false;
+
+  // Simple authentication prompt (for demonstration only)
+  function authenticateAdmin() {
+    const password = prompt("Enter admin password:");
+    // Replace 'admin123' with your real password
+    if (password === "admin123") {
+      isAdmin = true;
+      alert("Admin access granted!");
+      // Show admin buttons
+      document.getElementById('addBtn').style.display = '';
+      document.getElementById('updateBtn').style.display = '';
+      document.getElementById('deleteBtn').style.display = '';
+      document.getElementById('logoutBtn').style.display = '';
+      document.querySelector('button[onclick="authenticateAdmin()"]').style.display = 'none';
+        document.querySelector('.navbar').style.display = '';
+
+      // Show booking details button and booking info div
+      document.getElementById('viewBookingBtn').style.display = '';
+      document.getElementById('bookingInfo').style.display = '';
+ }else {
+      alert("Incorrect password. Admin access denied.");
+    }}
+  
+  function logoutAdmin() {
+    isAdmin = false;
+    // Hide admin buttons
+    document.getElementById('addBtn').style.display = 'none';
+    document.getElementById('updateBtn').style.display = 'none';
+    document.getElementById('deleteBtn').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'none';
+
+     // Hide booking details button and booking info div
+    document.getElementById('viewBookingBtn').style.display = 'none';
+    document.getElementById('bookingInfo').style.display = 'none';
+
+    document.querySelector('button[onclick="authenticateAdmin()"]').style.display = '';
+    
+    alert("Logged out.");
+  }
+</script>
+
+<button onclick="authenticateAdmin()">Admin Login</button>
+<button id="logoutBtn" onclick="logoutAdmin()" style="display:none;">Logout</button>
+
+<nav class="navbar" style="display:none;">
+  <button onclick="showSection('view')">View Packages</button>
+  <button id="addBtn" onclick="showSection('add')" style="display:none;">Add Package</button>
+  <button id="updateBtn" onclick="showSection('update')" style="display:none;">Update Package</button>
+  <button id="deleteBtn" onclick="showSection('delete')" style="display:none;">Delete Package</button>
+  <!-- Add this inside your <nav class="navbar"> block -->
+
+  <button onclick="showSection('search')">Search</button>
+  <button onclick="showSection('filter')">Filter</button>
+  <button id="viewBookingBtn" onclick="showBookingDetails()" style="display:none;">View Booking Details</button>
+ 
+</nav>
+
+
+<div id="welcomeMsg"
+     style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      background: linear-gradient(90deg, #fff8e1 60%, #e0c3fc 100%);
+      border-radius: 22px;
+      box-shadow: 0 6px 32px #bfa14a30;
+      padding: 1.5rem 2.5rem;
+      margin: 2.5rem auto 2rem auto;
+      max-width: 650px;
+      font-size: 2.1rem;
+      font-weight: bold;
+      color: #7c2a2a;
+      letter-spacing: 1.5px;
+      border: 2.5px solid #bfa14a;
+      position: relative;
+      overflow: hidden;
+    ">
+<span style="font-size:2.7rem; filter: drop-shadow(0 2px 6px #bfa14a80);">&#128747;</span>
+  <span>
+    Welcome to 
+    <span class="shine-text" style="color:#bfa14a; position:relative;">
+      Royal Tours
+      <span class="shine"></span>
+    </span>
+    <br>
+    <span style="font-size:1.3rem; color:#7c2a2a; font-weight:400;">
+      Your journey begins here!
+    </span>
+  </span>
+  
+</div>
+<!-- Move this OUTSIDE nav -->
+<div id="bookingInfoContainer" style="display:none; padding: 0px; margin: 20px auto; max-width: 800px; background: #fffbe6; border: 2px solid #bfa14a; border-radius: 10px;">
+  <div id="bookingInfo" style="color: #333;"></div>
+</div>
+<script>
+  // Show admin-only buttons if isAdmin is true
+  if (isAdmin) {
+    document.getElementById('addBtn').style.display = '';
+    document.getElementById('updateBtn').style.display = '';
+    document.getElementById('deleteBtn').style.display = '';
+   
+  }
+</script>
+
+  <div class="container" style="display:none;">
+    <!-- Services and Slideshow Container -->
+    <div class="services-slideshow">
+     <div class="slideshow-images">
+  <img src="https://wallpaperaccess.com/full/1318411.png" class="slide active" alt="">
+  <img src="https://brabbu.com/blog/wp-content/uploads/2015/10/10-best-inspirational-travel-quotes1.jpg" class="slide" alt="">
+    <img src="https://wallpaperaccess.com/full/650107.jpg" class="slide" alt="">
+  <img src="https://tse4.mm.bing.net/th/id/OIP.hIjFqj1YlTBLkxeve0cfqQHaFj?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" class="slide" alt="">
+  <img src="https://wallpaperaccess.com/full/1318336.jpg" class="slide" alt="">
+  <img src="https://wallpaperaccess.com/full/650127.jpg" class="slide" alt="">
+  <img src="https://wallpaperaccess.com/full/1318364.jpg" class="slide" alt="">
+  <img src="https://wallpapercave.com/wp/wp7050287.jpg" class="slide" alt="">
+
+</div>
+      <div class="services-info">
+        <h3>Our Services</h3>
+        <ul>
+          <li>Luxury Heritage Tours</li>
+          <li>Hill Station Retreats</li>
+          <li>Adventure & Wildlife Packages</li>
+          <li>Custom Group & Family Tours</li>
+          <li>24/7 Travel Assistance</li>
+        </ul>
+          <p style="margin-top: 10px; font-weight: 600; color: #2c3e50;">
+    📞 Call now to confirm your bookings: <span style="color: #bfa14a;">+91-98765-43210</span>
+  </p>
+<!-- Place this inside your HTML where you want the chatbot to appear -->
+<div id="chatbotContainer" style="width: 350px; height: 250px; border: 1px soli d#bfa14a; border-radius: 10px; display: flex; flex-direction: column; font-family: Arial, sans-serif;">
+
+  <!-- Header -->
+  <div id="chatbotHeader" style="background:#e0c3fc 100%; color:white; padding: 10px; font-weight:bold; text-align:center;border-radius: 8px;">
+    TravelBot
+  </div>
+
+  <!-- Chat messages area -->
+  <div id="chatbotMessages" style="flex: 1; padding: 10px; overflow-y: auto; background: #f9f9f9; font-size: 14px;">
+    <div style="color: #888; text-align:center; margin-top: 20px;">Hi! Ask me about travel packages.</div>
+  </div>
+
+  <!-- Input area -->
+  <div style="display: flex; padding: 10px; border-top: 1px solid #ccc;">
+    <input id="chatbotInput" type="text" placeholder="Type your message..." style="flex:1; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+    <button id="voiceBtn" style="margin-left: 8px; padding: 8px 12px; background:#a885c8; color:white; border:1px solid #ccc; border-radius:4px; cursor:pointer;">
+  🎤
+</button>
+
+    <button id="chatbotSendBtn" style="margin-left: 8px; padding: 8px 12px; background:#e0c3fc 100%; color:white; border:1px solid #ccc; border-radius:4px; cursor:pointer;">Send</button>
+  </div>
+
+</div>
+<script>
+  // Check browser compatibility
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-IN';
+    recognition.interimResults = false;
+
+    const voiceBtn = document.getElementById('voiceBtn');
+    let isListening = false;
+
+    voiceBtn.addEventListener('click', () => {
+      if (!isListening) {
+        recognition.start();
+        isListening = true;
+        voiceBtn.textContent = "🎙️ Listening...";
+      } else {
+        recognition.abort(); // Immediately stop recognition without triggering result or end
+        isListening = false;
+        voiceBtn.textContent = "🎤";
+      }
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      chatbotInput.value = transcript;
+      chatbotSendBtn.click();
+    };
+
+    recognition.onend = () => {
+      isListening = false;
+      voiceBtn.textContent = "🎤";
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Voice recognition error:", event.error);
+      isListening = false;
+      voiceBtn.textContent = "🎤";
+    };
+  } else {
+    alert("Sorry, your browser does not support speech recognition.");
+  }
+</script>
+
+
+
+<script>
+  // Simple chatbot logic - replace with your own or API integration
+  const chatbotMessages = document.getElementById('chatbotMessages');
+  const chatbotInput = document.getElementById('chatbotInput');
+  const chatbotSendBtn = document.getElementById('chatbotSendBtn');
+
+  function addMessage(text, sender='bot') {
+    const msgDiv = document.createElement('div');
+    msgDiv.style.margin = '8px 0';
+    msgDiv.style.padding = '8px 12px';
+    msgDiv.style.borderRadius = '15px';
+    msgDiv.style.maxWidth = '80%';
+    msgDiv.style.clear = 'both';
+
+    if(sender === 'user') {
+      msgDiv.style.backgroundColor = '#e0c3fc';
+      msgDiv.style.color = 'white';
+      msgDiv.style.float = 'right';
+      msgDiv.textContent = text;
+    } else {
+      msgDiv.style.backgroundColor = '#a885c8';
+      msgDiv.style.color = '#333';
+      msgDiv.style.float = 'left';
+      msgDiv.textContent = text;
+    }
+
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+function botReply(userMsg) {
+  userMsg = userMsg.toLowerCase();
+
+  if (userMsg.includes('hello') || userMsg.includes('hi')) {
+    return "Hello! How can I assist you with travel packages today?";
+  }
+  if (userMsg.includes('price')) {
+    return "Our prices vary depending on the destination and duration. You can search for specific packages above.You can have them changed after you book a call and get one..!";
+  }
+  if (userMsg.includes('duration')) {
+    return "Package durations typically range from 3 to 15 days.";
+  }
+  if (userMsg.includes('book')) {
+    return "You can click 'View Details' on any package and then 'Book Now' to start your booking.";
+  }
+  if (userMsg.includes('services') || userMsg.includes('what do you offer') || userMsg.includes('included') || userMsg.includes('facilities')) {
+  return "We offer complete travel solutions including transportation, accommodation, sightseeing, meals, and 24/7 travel assistance—customized to your preferences.";
+}
+  if (userMsg.includes('where') || userMsg.includes('destination')) {
+    return "We offer packages across many beautiful destinations in India, including heritage sites, hill stations, and wildlife reserves.";
+  }
+  if (userMsg.includes('group') || userMsg.includes('family')) {
+    return "We offer custom group and family tours tailored to your needs. Feel free to ask for more details!";
+  }
+  if (userMsg.includes('assistance') || userMsg.includes('support')) {
+    return "Our 24/7 travel assistance is available to help you at every step of your journey.";
+  }
+  if (userMsg.includes('special') || userMsg.includes('offers') || userMsg.includes('discount')) {
+    return "Check out our seasonal offers and discounts on the homepage or subscribe to our newsletter for the latest deals!";
+  }
+  if (userMsg.includes('itinerary')) {
+    return "You can view detailed itineraries for each package by clicking the 'View Details' button on the package card.";
+  }
+  if (userMsg.includes('transport') || userMsg.includes('travel')) {
+    return "Transportation details are included in each package itinerary. We ensure comfortable and safe travel options.";
+  }
+  if (userMsg.includes('vehicle') || userMsg.includes('car') || userMsg.includes('bus')) {
+    return "We offer a range of vehicle options including AC coaches, SUVs, and luxury cars depending on your package.";
+  }
+  if (userMsg.includes('room') || userMsg.includes('accommodation') || userMsg.includes('hotel')) {
+    return "Our packages include accommodations ranging from 3-star hotels to luxury resorts, tailored to your preferences.";
+  }
+  if (userMsg.includes('food') || userMsg.includes('meals')) {
+    return "Our packages often include delicious local meals.We offer both Veg and non-veg based on requests";
+  }
+  if (userMsg.includes('pets')) {
+    return "Pets are generally not allowed on our tours, but please contact us for specific requests.";
+  }
+  if (userMsg.includes('payment') || userMsg.includes('methods')) {
+    return "We accept payments via credit cards, debit cards, UPI, and net banking for your convenience.";
+  }
+  if (userMsg.includes('thank you') || userMsg.includes('thanks')) {
+  return "You're welcome! Let me know if there's anything else I can help you with.";
+}
+if (userMsg.includes('change number of days') || userMsg.includes('change duration') || userMsg.includes('extend trip') || userMsg.includes('shorten trip')) {
+  return "Sure! The number of days for most trips can be customized. Just let us know your preferred duration during the booking call.";
+}
+if (userMsg.includes('payment') || userMsg.includes('pay') || userMsg.includes('payment mode') || userMsg.includes('how to pay')) {
+  return "You can make the payment online after your booking is confirmed through a call with our travel consultant.";
+}
+if (userMsg.includes('discount') || userMsg.includes('offer') || userMsg.includes('deals') || userMsg.includes('special')) {
+  return "We have exciting seasonal discounts and special offers available! Check our homepage or contact us directly to know the latest deals.";
+}
+  if (userMsg.includes('cancel') || userMsg.includes('cancellation') || userMsg.includes('refund')) {
+  return "If your trip is cancelled, refund policies will apply based on the package terms. Please contact our support team at info@royaltours.com or call +91-9876543210 for assistance.";
+}
+
+  if (userMsg.includes('payment security') || userMsg.includes('secure')) {
+    return "All payments are processed through secure and encrypted gateways to protect your information.";
+  }
+  if (userMsg.includes('visa') || userMsg.includes('passport')) {
+    return "Please ensure your passport is valid for at least 6 months from the travel date. Visa requirements depend on your nationality.";
+  }
+  if (userMsg.includes('covid') || userMsg.includes('safety')) {
+    return "We follow all government guidelines for COVID-19 safety including sanitization, social distancing, and mask mandates.";
+  }
+  if (userMsg.includes('weather') || userMsg.includes('climate')) {
+    return "Weather can be unpredictable, but don’t worry—we’ll make the necessary accommodations to ensure your comfort during the trip. Let us know your travel destination and dates for better planning.";
+ }
+  if (userMsg.includes('custom') || userMsg.includes('tailor')) {
+    return "Yes! We offer custom tours designed to your preferences. Just share what you want, and we'll create a special itinerary for you.";
+  }
+  if (userMsg.includes('insurance')) {
+    return "We highly recommend travel insurance. Please let us know if you want us to help arrange it for you.";
+  }
+  if (userMsg.includes('contact') || userMsg.includes('help')) {
+    return "You can reach our support team anytime at info@royaltours.com or call +91-9876543210.";
+  }
+  if (userMsg.includes('luggage') || userMsg.includes('baggage')) {
+    return "Most tours have luggage restrictions; we recommend packing light. Details depend on your specific package.";
+  }
+  if (userMsg.includes('special request') || userMsg.includes('preferences')) {
+    return "We try our best to accommodate special requests. Please share any preferences while booking.";
+  }
+  if (userMsg.trim() === '') {
+    return "Please type something so I can help!";
+  }
+  return "Sorry, I didn't quite get that. Try asking about prices, duration, booking, rooms, vehicles, safety, or any other travel-related questions.";
+}
+
+function handleUserMessage() {
+  const userMsg = chatbotInput.value.trim();
+  if (!userMsg) return;
+
+  addMessage(userMsg, 'user');
+  chatbotInput.value = '';
+
+  // Simulate bot typing delay
+  setTimeout(() => {
+    const reply = botReply(userMsg);
+    addMessage(reply, 'bot');
+  }, 500);
+}
+
+chatbotSendBtn.addEventListener('click', handleUserMessage);
+
+chatbotInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    handleUserMessage();
+  }
+});
+
+</script>
+ </div>
+    </div>
+    <h2>Tour Packages Dashboard</h2>
+
+<!-- Booking Details Section -->
+<section id="booking-section" class="section" style="display: none;">
+  <h2 style="color: #7c2a2a; margin-bottom: 15px;">All Booking Details</h2>
+  <div id="bookingInfo" style="color: #333; background: #fffbe6; border: 2px solid #bfa14a; border-radius: 10px; padding: 20px;"></div>
+</section>
+
+
+    <!-- View Packages Section -->
+    <section id="view-section" class="section">
+      <div class="package-list" id="packageList"></div>
+      
+    </section>
+
+    <!-- Add Package Section -->
+    <section id="add-section" class="section" style="display:none;">
+      <form id="addForm">
+        <input type="text" id="addName" placeholder="Name" required>
+        <input type="text" id="addDestination" placeholder="Destination" required>
+        <input type="number" id="addDuration" placeholder="Duration (days)" required>
+        <input type="number" id="addPrice" placeholder="Price" required>
+        <input type="text" id="addDescription" placeholder="Description">
+        <input type="text" id="addItinerary" placeholder="Itinerary">
+<div id="addImageUrlsContainer">
+      <input type="text" class="image-url" placeholder="Image URL" />
+    </div>
+    <button type="button" onclick="addImageUrlField('addImageUrlsContainer')">
+      + Add Another Image URL
+    </button>
+    <button type="submit">Add Package</button>
+   </form>
+    </section>
+
+    <!-- Update Package Section -->
+    <section id="update-section" class="section" style="display:none;">
+      <form id="updateForm">
+        <input type="number" id="updateId" placeholder="Package ID to update" required>
+        <input type="text" id="updateName" placeholder="Name">
+        <input type="text" id="updateDestination" placeholder="Destination">
+        <input type="number" id="updateDuration" placeholder="Duration (days)">
+        <input type="number" id="updatePrice" placeholder="Price">
+        <input type="text" id="updateDescription" placeholder="Description">
+        <input type="text" id="updateItinerary" placeholder="Itinerary">
+        <div id="updateImageUrlsContainer">
+  <input type="text" class="image-url" placeholder="Image URL">
+</div>
+<button type="button" onclick="addImageUrlField('updateImageUrlsContainer')">+ Add Image</button>
+
+        <button type="submit">Update Package</button>
+      </form>
+    </section>
+
+    <!-- Delete Package Section -->
+    <section id="delete-section" class="section" style="display:none;">
+      <form id="deleteForm">
+        <input type="number" id="deleteId" placeholder="Package ID to delete" required>
+        <button type="submit">Delete Package</button>
+      </form>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search-section" class="section" style="display:block;">
+      <input type="text" id="searchKeyword" placeholder="Search by keyword...">
+      <button type="button" id="searchBtn">Search</button>
+<button id="voiceSearchBtn" class="mic-button" title="Click to speak">
+  🎤
+</button>
+
+      <div class="package-list" id="searchResults"></div>
+    </section>
+
+    <!-- Filter Section -->
+    <section id="filter-section" class="section" style="display:block;">
+      <input type="text" id="filterDestination" placeholder="Destination">
+      <input type="number" id="filterMinPrice" placeholder="Min Price">
+      <input type="number" id="filterMaxPrice" placeholder="Max Price">
+      <input type="number" id="filterMinDays" placeholder="Min Days">
+      <input type="number" id="filterMaxDays" placeholder="Max Days">
+      <button type="button" id="filterBtn">Filter</button>
+      <div class="package-list" id="filterResults"></div>
+    </section>
+  </div>
+
+  <!-- Modal for Package Details -->
+  <div id="packageDetails" class="modal" style="display:none;"></div>
+
+  <!-- About Us & Contact Footer -->
+  <footer class="dashboard-footer">
+    <div class="about-footer">
+      <h3>About Royal Tours</h3>
+      <p>
+        Royal Tours is a passionate team of travel experts dedicated to bringing you the best experiences across India. Our packages are handpicked for comfort, adventure, and cultural richness. We believe in creating journeys that become cherished memories.
+      </p>
+    </div>
+    <div class="contact-footer">
+      <h3>Contact Us</h3>
+      <p>
+        Email: <a href="mailto:info@royaltours.com">info@royaltours.com</a><br>
+        Phone: +91-9876543210<br>
+        Address: 123, Palace Road, Bengaluru, India
+      </p>
+    </div>
+  </footer>
+
+  <!-- Slideshow JS -->
+  <script>
+    // Homepage logic
+    document.getElementById('getStartedBtn').onclick = function() {
+      document.getElementById('homepage').style.display = 'none';
+      document.querySelector('.navbar').style.display = '';
+      document.querySelector('.container').style.display = '';
+      if (typeof showSection === "function") showSection('view');
+    };
+    document.querySelector('.navbar').style.display = 'none';
+    document.querySelector('.container').style.display = 'none';
+
+    // Simple auto slideshow for services-slideshow
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slideshow-images .slide');
+    function showNextSlide() {
+      slides.forEach((img, i) => img.classList.remove('active'));
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+    if (slides.length) {
+      slides[0].classList.add('active');
+      setInterval(showNextSlide, 3500);
+    }
+  </script>
+
+
+
+  <script src="app.js"></script>
+
+<script>
+  // Function to show all bookings
+  function showBookingDetails() {
+    if (!isAdmin) {
+      alert("Admin access required.");
+      return;
+    }
+
+    const bookingsStr = localStorage.getItem('bookings');
+    const infoDiv = document.getElementById('bookingInfo');
+    const container = document.getElementById('bookingInfoContainer');
+
+    container.style.display = 'block';
+
+    if (!bookingsStr) {
+      infoDiv.innerHTML = '<p style="color: red;">No bookings found.</p>';
+      return;
+    }
+
+    const bookings = JSON.parse(bookingsStr);
+
+    if (bookings.length === 0) {
+      infoDiv.innerHTML = '<p style="color: red;">No bookings found.</p>';
+      return;
+    }
+
+    let html = '<h3 style="margin-bottom: 10px;">All Bookings:</h3>';
+    bookings.forEach((b, idx) => {
+      html += `
+        <div style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #aaa;">
+          <strong>Booking #${idx + 1}</strong><br>
+          Name: ${b.name}<br>
+          Email: ${b.email}<br>
+          Phone: ${b.phoneNumber}<br>
+          Travelers: ${b.travelers}<br>
+          Date: ${b.bookingDate}<br>
+          Package: ${b.selectedPackage}<br>
+          <button onclick="deleteBooking(${idx})" style="margin-top: 5px; background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
+        </div>
+      `;
+    });
+
+    infoDiv.innerHTML = html;
+  }
+
+  // Function to save a new booking
+  function saveBooking(newBooking) {
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    bookings.push(newBooking);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+  }
+
+  // Function to delete a booking by index
+  function deleteBooking(index) {
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    if (index >= 0 && index < bookings.length) {
+      bookings.splice(index, 1);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      showBookingDetails(); // Refresh the booking list
+    }
+  }
+  document.getElementById('loginBtn').addEventListener('click', function() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  const role = document.getElementById('loginRole').value;
+
+  const loginMessage = document.getElementById('loginMessage');
+  loginMessage.textContent = '';
+
+  if (!email || !password) {
+    loginMessage.textContent = 'Please enter email and password.';
+    return;
+  }
+
+  fetch('http://localhost:8080/api/users/login', { // update URL if needed
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, role })
+  })
+  .then(async res => {
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      loginMessage.textContent = data.message || 'Login failed.';
+      return;
+    }
+    
+    alert(data.message || 'Login successful!');
+    document.getElementById('loginSection').style.display = 'none';
+    document.querySelector('.navbar').style.display = '';
+    
+    if (role.toUpperCase() === 'ADMIN') {
+      // Show all admin buttons
+      document.getElementById('addBtn').style.display = '';
+      document.getElementById('updateBtn').style.display = '';
+      document.getElementById('deleteBtn').style.display = '';
+      document.getElementById('viewBookingBtn').style.display = '';
+      document.getElementById('logoutBtn').style.display = '';
+      isAdmin = true;
+    } else {
+      // USER role - show only limited buttons
+      document.getElementById('addBtn').style.display = 'none';
+      document.getElementById('updateBtn').style.display = 'none';
+      document.getElementById('deleteBtn').style.display = 'none';
+      document.getElementById('viewBookingBtn').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = '';
+      isAdmin = false;
+    }
+  })
+  .catch(err => {
+    loginMessage.textContent = 'Error connecting to server.';
+    console.error(err);
+  });
+});
+
+// Logout button to reset UI
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  // Hide admin buttons
+  document.getElementById('addBtn').style.display = 'none';
+  document.getElementById('updateBtn').style.display = 'none';
+  document.getElementById('deleteBtn').style.display = 'none';
+  document.getElementById('viewBookingBtn').style.display = 'none';
+  document.getElementById('logoutBtn').style.display = 'none';
+  
+  // Hide navbar & show login form again
+  document.querySelector('.navbar').style.display = 'none';
+  document.getElementById('loginSection').style.display = '';
+  isAdmin = false;
+  alert('Logged out.');
+});
+
+</script>
+
+
+</body>
+</html>

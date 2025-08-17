@@ -1,0 +1,198 @@
+/* Royal pastel theme */
+body {
+  background: linear-gradient(120deg, #e0c3fc 60%, #8ec5fc 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.navbar {
+  background: #fff8f0;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  box-shadow: 0 2px 8px #b39ddb80;
+  margin-bottom: 2rem;
+  border-radius: 0 0 18px 18px;
+}
+
+.navbar button {
+  background: linear-gradient(90deg, #b39ddb 60%, #fbc2eb 100%);
+  color: #4b3869;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px #b39ddb40;
+}
+
+.navbar button:hover {
+  background: linear-gradient(90deg, #fbc2eb 60%, #b39ddb 100%);
+  transform: scale(1.05);
+}
+
+.container {
+  background: #fff8f0;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #b39ddb40, 0 2px 8px #b39ddb20;
+  text-align: center;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+h2 {
+  color: #7c43bd;
+  margin-bottom: 1.5rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+form, .search-filter {
+  margin-bottom: 1.5rem;
+}
+
+input, button {
+  padding: 0.7rem 1rem;
+  border-radius: 7px;
+  border: 1.5px solid #b39ddb;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+  width: 80%;
+  max-width: 300px;
+  transition: border 0.2s;
+  background: #f3e8ff;
+  color: #4b3869;
+}
+
+input:focus {
+  border: 2px solid #fbc2eb;
+  outline: none;
+  background: #fff;
+}
+
+button {
+  background: linear-gradient(90deg, #b39ddb 60%, #fbc2eb 100%);
+  color: #4b3869;
+  font-weight: 600;
+  border: none;
+  width: auto;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-bottom: 0;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #fbc2eb 60%, #b39ddb 100%);
+  transform: scale(1.05);
+}
+.package-list {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Updated package card for minimal info and clickable style */
+.package-card {
+  background: #f3e8ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #b39ddb80;
+  padding: 1rem;
+  width: 270px;
+  text-align: left;
+  position: relative;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1.5px solid #b39ddb40;
+  cursor: pointer;
+  min-height: 340px; /* Ensure enough space for the button */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.package-card:hover {
+  box-shadow: 0 6px 24px #b39ddb60;
+  transform: translateY(-4px) scale(1.03);
+  border: 1.5px solid #7c43bd;
+}
+
+.package-card .card-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.package-card h3 {
+  margin: 0.5rem 0 0.2rem 0;
+  color: #7c43bd;
+  font-size: 1.2rem;
+}
+
+.package-card .price {
+  color: #fbc2eb;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.package-card .destination {
+  color: #7c43bd;
+  font-weight: 500;
+}
+
+.package-card .card-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: #3a2c0a;
+  margin-bottom: 0.5rem;
+  font-size: 0.98rem;
+}
+/* Group card and button together in a column */
+.card-with-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+/* Ensure the button is always visible and styled */
+.package-card button {
+  margin-top: auto;
+  background: #bfa14a;
+  color: #fffdfd;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  display: block;
+  width: 100%;
+}
+
+.package-card button:hover {
+  background: #7c43bd;
+  color: #fff;
+  transform: scale(1.04);
+}
+
+.package-card .card-itinerary,
+.package-card .card-full-description,
+.package-card .card-full-itinerary {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .container { padding: 1rem 0.5rem; }
+  .package-card { width: 98%; }
+  input { width: 98%; }
+}
